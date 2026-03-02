@@ -1,0 +1,16 @@
+Write a program which prints small/large/equal relation of given two integers a and b.
+
+import java.util.Scanner;
+class Main{
+public static void main(String [] args){
+Scanner ip=new Scanner(System.in);
+int frst=ip.nextInt();
+int scnd=ip.nextInt();
+if (frst < scnd){
+System.out.println("a < b");}
+else if( frst > scnd){
+System.out.println("a > b");}
+else{
+System.out.println("a == b");}
+}
+}
