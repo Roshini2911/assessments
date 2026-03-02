@@ -1,0 +1,36 @@
+Vishal Wants to buy 2 gifts for his best friend whose name is Annabelle(her age is 20), So they both went for shopping in a store. But Annabelle gave, Vishal a condition that she will accept this gifts only when the total price of the gifts is the same as her age times 100.
+The store contains, a list of items whose prices are also displayed, Now Vishal is asking for your help to buy gifts, as he wants to impress Annabelle this time.
+Note: Vishal cannot buy the same item more than once.
+
+
+import java.util.Scanner;
+class Main{
+    public static void main (String[] args) {
+        Scanner an=new Scanner(System.in);
+        int T=an.nextInt();
+        for (int i=0; i<T; i++){
+            int N=an.nextInt();
+            int[] A=new int[N];
+            int fnd=0;
+            int bday=20*100;
+            for (int t=0; t<N; t++){
+                A[t]=an.nextInt();
+            } 
+            for(int t=0;t<N;t++){
+                for(int j=t+1;j<N;j++){
+                    if(A[t]+A[j]==bday){
+                        fnd=1;
+                        break;
+                    }
+                }
+                if(fnd==1) break;
+            }
+            if(fnd==1){
+                System.out.println("Accepted");
+            }
+            else{
+                System.out.println("Rejected");
+            }
+        } 
+    }
+}
