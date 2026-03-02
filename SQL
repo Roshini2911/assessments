@@ -1,0 +1,195 @@
+create database day1;
+use day1;
+create table emp(
+eid int primary key,
+ename varchar(20) not null,
+esalary int,
+bg varchar(10) default "O+ve",
+age int check(age>=18 and age<=60),
+email varchar(20) unique
+);
+
+insert into emp values (10,"Mahith",50000,"A+ve",59,"mahi@gmail.com");
+desc emp;
+
+create table bg(
+bg_id int primary key,
+bg_n varchar(10)
+);
+INSERT INTO bg (bg_id, bg_n) VALUES (1, 'A+');
+INSERT INTO bg (bg_id, bg_n) VALUES (2, 'B+');
+INSERT INTO bg (bg_id, bg_n) VALUES (3, 'O+');
+INSERT INTO bg (bg_id, bg_n) VALUES (4, 'AB+');
+desc bg;
+
+create table state(
+state_id int primary key,
+state_n varchar(10)
+);
+INSERT INTO state (state_id, state_n) VALUES (1, 'Texas');
+INSERT INTO state (state_id, state_n) VALUES (2, 'Florida');
+INSERT INTO state (state_id, state_n) VALUES (3, 'Ohio');
+INSERT INTO state (state_id, state_n) VALUES (4, 'Nevada');
+
+desc state;
+
+create table employe(
+bg int,
+state int,
+foreign key(bg) references bg(bg_id),
+foreign key(state) references state(state_id)
+);
+insert into employe values(1,2);
+select b.bg_n, s.state_n
+from employe e
+join bg b on e.bg = b.bg_id
+join state s on e.state=s.state_id;
+
+create table emp(
+eid int,
+fname varchar(10)
+);
+
+CREATE TABLE patient (
+    pid INT,
+    fname VARCHAR(50),
+    lname VARCHAR(50),
+    age INT,
+    bg VARCHAR(10)
+);
+INSERT INTO patient (pid, fname, lname, age, bg) VALUES
+(1, 'madhava', 'reddy', 45, 'o+ve'),
+(2, 'abhinav', 'bandra', 45, 'o-ve'),
+(4, 'hari', 'kiran', 60, 'b-ve'),
+(3, 'madhava', 'kiran', 52, 'o+ve'),
+(5, 'veena', 'kumari', 42, NULL),
+(6, 'k_iran', 'kumar', 39, 'b-ve'),
+(2, 'abhinav', 'bandra', 45, 'o-ve'),
+(7, 'mahes%h', 'nambootri', 36, 'b+ve'),
+(8, 'rahul', 'kumar', 46, 'b-ve'),
+(1, 'madhava', 'reddy', 45, 'o+ve'),
+(9, 'bharat', 'kumar', 56, 'b-ve');
+
+-- select * from patient order by pid desc
+-- select distinct * from patient
+select age from patient limit 3;
+
+CREATE TABLE employee (
+    eid INT,
+    fname VARCHAR(50),
+    lname VARCHAR(50),
+    age INT,
+    salary INT NULL,
+    dept VARCHAR(20),
+    doj DATE
+);
+INSERT INTO employee (eid, fname, lname, age, salary, dept, doj) VALUES
+(1, 'rajeev', 'sukla', 23, 12000, '.net', '2011-10-23'),
+(2, 'sowmya', 'kumari', 23, 19000, 'db', '2010-11-13'),
+(3, 'kishore', 'kumar', 27, 36000, 'android', '2011-10-16'),
+(4, 'abimanyu', 'biswal', 22, NULL, 'android', '2010-02-20'),
+(5, 'soni', 'kumar', 24, 21800, '.net', '2009-06-21'),
+(6, 'anu', '_singh', 22, 12000, 'db', '2010-10-23'),
+(7, '_dinesh', 'moh%anty', 23, 15000, '.net', '2009-08-26'),
+(1, 'rajeev', 'sukla', 23, 12000, '.net', '2011-10-23'),
+(8, 'nishala', '_kumari', 22, 18000, 'db', '2008-07-19');
+
+select * from employee order by dept;
+select distinct * from employee;
+select fname from employee limit 4;
+
+create database day2;
+create table patient1(
+pid int,
+fname varchar(10),
+lname varchar(20),
+age int,
+bg varchar(10)
+);
+
+insert into patient1 values(1,"aaa","bbb",45,"O-ve");
+insert into patient1 values(2,"ccc","ddd",56,"B+ve");
+insert into patient1 values(3,"eee","zzz",59,"A-ve");
+insert into patient1 values(4,"abc","def",47,"AB-ve");
+insert into patient1 values(5,"jkl","ghi",68,"O+ve");
+
+select pid,fname,lname,age,bg from patient1;
+
+create table patient2(
+pid int,
+fname varchar(10),
+lname varchar(20),
+age int,
+bg varchar(10)
+);
+
+insert into patient2 values(1,"aaa","bbb",45,"O-ve");
+insert into patient2 values(2,"ccc","ddd",56,"B+ve");
+insert into patient2 values(3,"eee","zzz",59,"A-ve");
+insert into patient2 values(4,"abc","def",47,"AB-ve");
+insert into patient2 values(5,"jkl","ghi",68,"O+ve");
+insert into patient2 values(6,"aaa","bbb",45,"O-ve");
+insert into patient2 values(7,"aaa","bbb",45,"O-ve");
+
+-- statementlab-1
+select * from patient;
+
+select pid,fname,lname,age,bg from patient2;
+
+select concat(fname,lname) as 'fullname',pid,bg from patient2;
+
+-- statementlab-2 
+select concat(fname,lname) as 'fullname',age+2 from patient2;
+
+-- statementlab-3
+select concat(fname," ",lname,"'s bg is"," ",bg," and he/she is from India") from patient2;
+
+-- orderby lab-1-------
+select * from patient2 order by age desc;
+select * from patient2 order by lname,fname desc;
+select concat(fname,lname) as ‘fullname’, age from patient2 order by age;
+select fname, lname, bg from patient2 order by bg desc;
+select fname, lname, pid from patient2 order by lname, fname desc;
+-- orderby lab2-----
+select fname,age from patient2 order by concat(‘Hello’,fname,lname) desc;
+select * from patient2 order by age desc;
+
+-- distinct 
+select distinct * from patient2;
+select * from patient2;
+select distinct fname, age from patient2;
+select distinct age, bg from patient2;
+select distinct fname, age,bg from patient2 order by bg desc;
+
+-- limit
+select * from patient2 order by bg desc limit 3;
+select concat(fname,' ',lname) as 'fullname' ,age from employee order by salary desc limit 3;
+-- where 
+select * from patient2 where age between 40 and 70;
+
+-- group by
+ select fname,lname from patient2 group by fname,lname,age;
+ select fname,lname,avg(age) from patient2 group by fname,lname,age;
+ select bg,count(*) as 'count' from patient2 group by bg;
+ select age from patient2 group by age;
+ select max(age) as 'max age',bg from patient2 group by bg;
+ select lname,min(age) from patient2 group by bg,lname;
+
+ -- having 
+ select bg,max(age) as 'max age' from patient2 group by bg having max(age)>50;
+ select bg,min(age) as 'min age' from patient2 group by bg having min(age)>50;
+ select bg,min(age) as 'min age' from patient2 group by bg having min(age)<>50;
+ select bg,count(bg) as 'count bg' from patient2 group by bg having count(bg);
+ -- correlated
+ select p1.* from patient2 p1 where 3=( select count(distinct(p2.pid)) from patient2 p2 where p2.age>p1.age);
+ 
+-- joins
+select p1.*,p2.* from patient2 p1 inner join patient2 p2 on p1.age>p2.age;
+select p1.*,p2.* from patient2 p1 inner join patient2 p2 on p1.age!=p2.age;
+select p1.*,p2.* from patient2 p1 left outer join patient2 p2 on p1.age!=p2.age;
+select p1.*,p2.* from patient2 p1 right outer join patient2 p2 on p1.age!=p2.age;
+select p1.*,p2.* from patient2 p1 right outer join patient2 p2 on p1.age>p2.age;
+select p1.*,p2.* from patient2 p1 left outer join patient2 p2 on p1.age>p2.age;
+select p1.*,p2.* from patient2 p1 inner join patient2 p2 on p1.age<p2.age;
+select p1.*,p2.* from patient2 p1 inner join patient2 p2 on p1.age<p2.bg;
+select p1.*,p2.* from patient2 p1 inner join patient2 p2 on p1.age>p2.bg;
