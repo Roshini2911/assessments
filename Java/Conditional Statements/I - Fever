@@ -1,0 +1,25 @@
+Chef is not feeling well today. He measured his body temperature using a thermometer and it came out to be 
+X
+X °F.
+A person is said to have fever if his body temperature is strictly greater than 
+98
+98 °F.
+Determine if Chef has fever or not.
+
+
+import java.util.Scanner;
+class Main{
+public static void main(String args[]){
+Scanner fv=new Scanner(System.in);
+int T = fv.nextInt();
+for(int i=0; i<T; i++){
+int y=fv.nextInt();
+if (y>98){
+System.out.println("Yes");
+}
+else{
+System.out.println("No");
+}
+}
+}
+}
