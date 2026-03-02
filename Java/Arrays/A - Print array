@@ -1,0 +1,23 @@
+You are given array 
+a
+a of size 
+n
+n you need to print all elements of this array 
+a
+a
+
+
+import java.util.Scanner;
+class Main{
+    public static void main (String[] args) {
+        Scanner c=new Scanner(System.in);
+        int a=c.nextInt();
+        int[] ar=new int[a];
+        for(int i=0;i<a;i++){
+            ar[i]=c.nextInt();
+        }
+        for(int j=0;j<a;j++){
+            System.out.println(ar[j]);
+        }
+    }
+}
