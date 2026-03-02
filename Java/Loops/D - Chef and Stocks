@@ -1,0 +1,46 @@
+Chef has started learning about the stock market and has already selected a favourite stock.
+He traded the stock for 
+N
+N consecutive days. Let 
+A
+i
+Ai​ denotes the profit earned by Chef on the 
+i
+t
+h
+ith day.
+Note that 
+A
+i
+<
+0
+Ai​<0 indicates that Chef had a loss on the 
+i
+t
+h
+ith day.
+Chef wants to find the maximum amount of of profit he would have earned, if he skipped trading for exactly one day.
+
+
+import java.util.Scanner;
+class Main{
+    public static void main (String[] args) {
+        Scanner ng=new Scanner(System.in);
+        int T=ng.nextInt();
+        for(int i=0; i<T; i++){
+            int N=ng.nextInt();
+            int [] arr=new int[N];
+            arr[0]=ng.nextInt();
+            int mn=arr[0];
+            int sm=arr[0];
+            for(int j=1;j<N;j++){
+                arr[j]=ng.nextInt();
+                if(mn>arr[j]){
+                    mn=arr[j];
+                }
+                sm+=arr[j];
+            }
+            System.out.println(sm-mn);
+        }
+    }
+}
